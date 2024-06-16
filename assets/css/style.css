@@ -1,0 +1,26 @@
+.header {
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+}
+
+img{
+    object-fit: cover;
+}
+
+#id img {
+    width: 250px;
+    height: 250px;
+    
+}
+
+.job-friends{
+    color: rgb(0, 162, 255);
+}
+.name{
+    color: rgb(0, 162, 255);
+}
