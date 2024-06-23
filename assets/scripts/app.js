@@ -4,6 +4,7 @@ const reposURL = 'https://api.github.com/users/pablomarquesc/repos';
 
 const respositories = document.getElementById('repositories');
 const profile = document.getElementById('profile');
+const content = document.getElementById('content')
 
 function getUserGitHub(){
     fetch(userURL)
@@ -97,7 +98,7 @@ function getReposGitHub(){
             project.innerHTML = `<div class="container-fluid px-5 mb-4 mt-4 ">
             <div class="row">
                 <div class="card col-md  me-5 mt-4 " style="width: 18rem;">
-                    <a class="link-offset-2 link-underline link-underline-opacity-0  text-reset" href="repo.html">
+                    <a class="link-offset-2 link-underline link-underline-opacity-0  text-reset" href="repo.html?id=${item.id}">
                         <div class="card-body">
                             <h5 class="card-title text-primary">${item.name}</h5>
                             <p class="card-text  mb-2 text-body-secondary">${item.description}</p>
@@ -122,5 +123,88 @@ function getReposGitHub(){
         })
     })
 }
+
+function displayRepos(idRep2){
+    fetch(reposURL)
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+
+        let data = await res.json();
+        data.map( item => {
+            if(idRep2 == item.id){
+                content.innerHTML = `<div>
+                <h2 class="perfil ms-4 ">Repositório: ${item.name} </h2>
+                <hr class=" border-2 opacity-100 mx-2">
+            </div>
+            <section class="container-fluid my-4 mx-3  ">
+                <div class="row me-3">
+                    <div class="col ms-3">
+                        <h5 class="text-primary">Descrição</h5>
+                        <div class="px-4">
+                            <p class="">${item.description}
+                            <p><b> Conteúdo: </b> </p>
+                            <p><b>Templates e Mockups: </b> Uma ampla variedade de modelos de página inicial, páginas de
+                                produto, páginas de perfil de usuário e mais, criados com as tecnologias mais recentes em
+                                HTML, CSS e JavaScript, incluindo frameworks populares como Bootstrap, Tailwind CSS e
+                                Materialize.
+                            </p>
+                            <p><b>Componentes e Kits de UI: </b> Uma extensa biblioteca de componentes reutilizáveis, como
+                                botões, barras de navegação, cartões, formulários e muito mais, prontos para integração em
+                                projetos web.
+                            </p>
+                            <p><b>Tutoriais e Guias Práticos: </b> Recursos educacionais detalhados, incluindo guias passo a
+                                passo, tutoriais em vídeo e artigos informativos sobre princípios de design, técnicas
+                                avançadas de layout responsivo, animações CSS, acessibilidade web e experiência do usuário.
+                            </p>
+                            <p><b>Ferramentas e Recursos Úteis: </b> Uma lista curada de ferramentas essenciais para
+                                designers e desenvolvedores web, como editores de código, geradores de paleta de cores,
+                                bancos de imagens gratuitas, kits de ícones, plugins para prototipagem e muito mais.
+                            </p><b>Objetivo: </b> Este repositório tem como objetivo promover a excelência no design de
+                            interfaces digitais, fornecendo uma fonte centralizada de inspiração, conhecimento e recursos
+                            práticos para a comunidade de desenvolvimento web. Ao reunir exemplos de alta qualidade,
+                            tutoriais informativos e ferramentas úteis, esperamos capacitar os profissionais e entusiastas
+                            da web a criar experiências digitais impactantes e acessíveis para todos.</p>
+                        </div>
+                        <h5 class="text-primary">Data de criação</h5>
+                        <p class="px-4">${item.created_at}</p>
+                        <h5 class="text-primary">Linguagem</h5>
+                        <p class="px-4">${item.language}</p>
+                        <h5 class="text-primary">Link de acesso</h5>
+                        <p class="px-4 ">https://github.com/AwesomeWebDesigns/AwesomeWebDesigns-Template-01</p>
+                        <h5 class="text-primary">Tópicos</h5>
+                        <button type="button" class="btn btn-primary mx-2 my-2 col">JavaScript</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">DevOps</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">FrontEnd</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">React</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">ReactNative</button>
+    
+                    </div>
+    
+                </div>`
+                console.log("ok")
+            }else{
+
+            }
+
+        
+            
+        })
+        
+        
+})
+ 
+}
+
+
+
+
+
+
+
+
+
+displayRepos()
 getReposGitHub()
 getUserGitHub()
