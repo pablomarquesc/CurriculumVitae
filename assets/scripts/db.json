@@ -1,0 +1,29 @@
+{
+    "imagens": [
+      {
+        "foto": "assets/img/bootstrap.jpg",
+        "titulo": "Bootstrap",
+        "descricao": "Bootstrap é um framework front-end de código aberto, originalmente desenvolvido pelo Twitter, que facilita a criação de websites e aplicações web responsivas e móveis. Lançado em 2011, Bootstrap fornece uma coleção de ferramentas CSS e JavaScript que ajudam desenvolvedores a construir layouts consistentes e atrativos com menos esforço."
+      },
+      {
+        "foto": "assets/img/css.jpg",
+        "titulo": "CSS",
+        "descricao": "CSS (Cascading Style Sheets) é uma linguagem de estilo utilizada para descrever a apresentação de um documento escrito em HTML ou XML. Juntamente com HTML e JavaScript, o CSS é uma das três principais tecnologias da World Wide Web, permitindo a criação de layouts visuais elegantes e a separação do conteúdo (HTML) da apresentação (CSS)."
+      },
+      {
+        "foto": "assets/img/html.jpg",
+        "titulo": "HTML",
+        "descricao": "HTML (HyperText Markup Language) é a linguagem padrão utilizada para criar e estruturar conteúdos na web. Servindo como a espinha dorsal de todas as páginas da internet, o HTML define a estrutura básica de um documento web através de uma série de elementos e tags."
+      },
+      {
+        "foto": "assets/img/react.jpg",
+        "titulo": "React",
+        "descricao": "React é uma biblioteca JavaScript de código aberto, desenvolvida pelo Facebook, usada para construir interfaces de usuário (UI) interativas e componentes reutilizáveis. Lançado em 2013, React tornou-se uma das bibliotecas mais populares para o desenvolvimento front-end devido à sua eficiência, flexibilidade e facilidade de uso.g"
+      },
+      {
+        "foto": "assets/img/java.jpg",
+        "titulo": "JavaScript",
+        "descricao": "JavaScript é uma linguagem de programação de alto nível, interpretada e baseada em protótipos, amplamente utilizada para o desenvolvimento de aplicações web dinâmicas e interativas. Originalmente criada por Brendan Eich em 1995 enquanto trabalhava na Netscape, JavaScript tornou-se uma das três tecnologias essenciais da web, ao lado de HTML e CSS."
+      }
+    ]
+}

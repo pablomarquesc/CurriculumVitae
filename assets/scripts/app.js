@@ -2,9 +2,11 @@
 const userURL = 'https://api.github.com/users/pablomarquesc';
 const reposURL = 'https://api.github.com/users/pablomarquesc/repos';
 
-const respositories = document.getElementById('repositories');
+const respositories = document.getElementById('row');
 const profile = document.getElementById('profile');
-const content = document.getElementById('content')
+const content = document.getElementById('content');
+const carrossel = document.getElementById('carrossel');
+const colegasEquipe = document.getElementById('colegasEquipe');
 
 function getUserGitHub(){
     fetch(userURL)
@@ -84,6 +86,7 @@ function getUserGitHub(){
     
 }
 
+
 function getReposGitHub(){
     fetch(reposURL)
     .then(async res =>{
@@ -95,8 +98,8 @@ function getReposGitHub(){
         data.map( item => {
             let project = document.createElement('div');
 
-            project.innerHTML = `<div class="container-fluid px-5 mb-4 mt-4 ">
-            <div class="row">
+            respositories.innerHTML += `
+            
                 <div class="card col-md  me-5 mt-4 " style="width: 18rem;">
                     <a class="link-offset-2 link-underline link-underline-opacity-0  text-reset" href="repo.html?id=${item.id}">
                         <div class="card-body">
@@ -115,11 +118,11 @@ function getReposGitHub(){
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                     </svg>
                     <p class="d-flex float-start ms-2"><b>${item.watchers_count}</b></p>
-                </div>
-            </div>
+                
+            
             `
 
-        respositories.appendChild(project);
+        
         })
     })
 }
@@ -144,45 +147,21 @@ function displayRepos(idRep2){
                         <h5 class="text-primary">Descrição</h5>
                         <div class="px-4">
                             <p class="">${item.description}
-                            <p><b> Conteúdo: </b> </p>
-                            <p><b>Templates e Mockups: </b> Uma ampla variedade de modelos de página inicial, páginas de
-                                produto, páginas de perfil de usuário e mais, criados com as tecnologias mais recentes em
-                                HTML, CSS e JavaScript, incluindo frameworks populares como Bootstrap, Tailwind CSS e
-                                Materialize.
-                            </p>
-                            <p><b>Componentes e Kits de UI: </b> Uma extensa biblioteca de componentes reutilizáveis, como
-                                botões, barras de navegação, cartões, formulários e muito mais, prontos para integração em
-                                projetos web.
-                            </p>
-                            <p><b>Tutoriais e Guias Práticos: </b> Recursos educacionais detalhados, incluindo guias passo a
-                                passo, tutoriais em vídeo e artigos informativos sobre princípios de design, técnicas
-                                avançadas de layout responsivo, animações CSS, acessibilidade web e experiência do usuário.
-                            </p>
-                            <p><b>Ferramentas e Recursos Úteis: </b> Uma lista curada de ferramentas essenciais para
-                                designers e desenvolvedores web, como editores de código, geradores de paleta de cores,
-                                bancos de imagens gratuitas, kits de ícones, plugins para prototipagem e muito mais.
-                            </p><b>Objetivo: </b> Este repositório tem como objetivo promover a excelência no design de
-                            interfaces digitais, fornecendo uma fonte centralizada de inspiração, conhecimento e recursos
-                            práticos para a comunidade de desenvolvimento web. Ao reunir exemplos de alta qualidade,
-                            tutoriais informativos e ferramentas úteis, esperamos capacitar os profissionais e entusiastas
-                            da web a criar experiências digitais impactantes e acessíveis para todos.</p>
                         </div>
                         <h5 class="text-primary">Data de criação</h5>
                         <p class="px-4">${item.created_at}</p>
                         <h5 class="text-primary">Linguagem</h5>
                         <p class="px-4">${item.language}</p>
                         <h5 class="text-primary">Link de acesso</h5>
-                        <p class="px-4 ">https://github.com/AwesomeWebDesigns/AwesomeWebDesigns-Template-01</p>
+                        <a href="https://github.com/AwesomeWebDesigns/AwesomeWebDesigns-Template-01"><p class="px-4 ">https://github.com/AwesomeWebDesigns/AwesomeWebDesigns-Template-01</p></a>
                         <h5 class="text-primary">Tópicos</h5>
-                        <button type="button" class="btn btn-primary mx-2 my-2 col">JavaScript</button>
-                        <button type="button" class="btn btn-primary mx-2 col ">DevOps</button>
-                        <button type="button" class="btn btn-primary mx-2 col ">FrontEnd</button>
-                        <button type="button" class="btn btn-primary mx-2 col ">React</button>
-                        <button type="button" class="btn btn-primary mx-2 col ">ReactNative</button>
-    
+                        <button type="button" class="btn btn-primary mx-2 my-2 col">${item.topics[0]}</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">${item.topics[1]}</button>
+                        <button type="button" class="btn btn-primary mx-2 col ">${item.topics[2]}</button>
                     </div>
     
                 </div>`
+                
                 console.log("ok")
             }else{
 
@@ -197,6 +176,149 @@ function displayRepos(idRep2){
  
 }
 
+function jsonContent(){
+    fetch('http://localhost:3000/imagens')
+        .then(response =>{
+        return response.json();
+          }).then(data =>{
+            console.log(data)
+
+            
+            carrossel.innerHTML = `<hr class=" border-2 opacity-100 mx-2">
+
+        <div id="carouselExampleCaptions" class="carousel slide mx-3 my-3">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="${data[0].foto}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 >${data[0].descricao}</h5>
+                  <p class="">${data[0].titulo}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="${data[1].foto}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>${data[1].descricao}</h5>
+                  <p>${data[1].titulo}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="${data[2].foto}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>${data[2].descricao}</h5>
+                  <p>${data[2].titulo}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="${data[3].foto}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>${data[3].descricao}</h5>
+                  <p>${data[3].titulo}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="${data[4].foto}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>${data[4].descricao}</h5>
+                  <p>${data[4].titulo}</p>
+                </div>
+              </div>
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>`
+      })
+      
+}
+
+// Recuperando informações dos colegas
+    fetch('https://api.github.com/users/lucsfn')
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+        const lucasGit = await res.json();
+        console.log(lucasGit)
+    })
+    fetch('https://api.github.com/users/victorschneide')
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+        const schinasGit = await res.json();
+
+    })
+    fetch('https://api.github.com/users/PratesVitor')
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+        const pratesGit = await res.json();
+
+    })
+    fetch('https://api.github.com/users/FilipAoGST')
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+        const filipGit = await res.json();
+        console.log(lucasGit)
+    })
+    fetch('https://api.github.com/users/JgGabiruta')
+    .then(async res =>{
+        if(!res.ok){
+            throw new Erorr(res.status);
+        }
+        const jbGit = await res.json();
+        
+    })
+
+   
+    
+    function colegasGit(){
+        for(let i = 0; i< colegasEquipe.length; i++)
+        colegasEquipe.innerHTML = `div class="col-md-2 col-sm-12 ms-3">
+                    <img src="${lucasGit.avatar_url}" class="img-thumbnail" style="width: 250px;height: 210px;">
+                    <p class=" fs-5 text-center "><b>${lucasGit.name}</b></p>
+                </div>
+                <div class="col-md-2 col-sm-12 ms-3">
+                    <img src="${schinasGit.avatar_url}" class="img-thumbnail" style="width: 250px;height: 210px;">
+                    <p class=" fs-5 text-center "><b>${schinasGit.name}</b></p>
+                </div>
+                <div class="col-md-2 col-sm-12 ms-3">
+                    <img src="${pratesGit.avatar_url}" class="img-thumbnail" style="width: 250px;height: 210px;">
+                    <p class=" fs-5 text-center "><b>${pratesGit.name}</b></p>
+                </div>
+                <div class="col-md-2 col-sm-12 ms-3">
+                    <img src=".${filipGit.avatar_url}" class="img-thumbnail" style="width: 250px;height: 210px;">
+                    <p class=" fs-5 text-center "><b>${filipGit.name}</b></p>
+                </div>
+                <div class="col-md-2 col-sm-12 ms-3">
+                    <img src="${jbGit.avatar_url}" class="img-thumbnail" style="width: 250px;height: 210px;">
+                    <p class=" fs-5 text-center "><b>${jbGit.name}</b></p>
+                </div>`
+                
+             
+         
+          
+    }
+
+
+    
 
 
 
@@ -205,6 +327,8 @@ function displayRepos(idRep2){
 
 
 
+
+jsonContent()
 displayRepos()
 getReposGitHub()
 getUserGitHub()
